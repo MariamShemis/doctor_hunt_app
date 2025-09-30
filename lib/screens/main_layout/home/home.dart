@@ -7,6 +7,7 @@ import 'package:doctor_hunt_app/core/widgets/custom_home_list_view.dart';
 import 'package:doctor_hunt_app/core/widgets/custom_properitise_doctor.dart';
 import 'package:doctor_hunt_app/core/widgets/custom_text_field.dart';
 import 'package:doctor_hunt_app/core/widgets/feature_doctor_list_view.dart';
+import 'package:doctor_hunt_app/screens/main_layout/favorite/doctor_details.dart';
 import 'package:doctor_hunt_app/screens/main_layout/home/screen_lives.dart';
 import 'package:flutter/material.dart';
 
@@ -43,6 +44,45 @@ class _HomeState extends State<Home> {
       text: "Dr. Crick",
       textDiscription: "25.00/ hours",
       rating: "3.7",
+    ),
+  ];
+  int index = 0;
+  List<ModelOnboarding> model3 = [
+    ModelOnboarding(
+      image: HomeAssets.findDr1,
+      text: "Dr. Pediatrician",
+      textDiscription: "Specialist Cardiologist ",
+      rating: "28.00/hr",
+    ),
+    ModelOnboarding(
+      image: HomeAssets.findDr2,
+      text: "Dr. Strain",
+      textDiscription: "22.00/ hours",
+      rating: "27.00/hr",
+    ),
+    ModelOnboarding(
+      image: HomeAssets.findDr3,
+      text: "Dr. Lachinet",
+      textDiscription: "29.00/ hours",
+      rating: "29.00/hr",
+    ),
+    ModelOnboarding(
+      image: HomeAssets.findDr4,
+      text: "Dr. Crick",
+      textDiscription: "25.00/ hours",
+      rating: "30.00/hr",
+    ),
+    ModelOnboarding(
+      image: HomeAssets.findDr5,
+      text: "Dr. Crick",
+      textDiscription: "25.00/ hours",
+      rating: "24.00/hr",
+    ),
+    ModelOnboarding(
+      image: HomeAssets.findDr3,
+      text: "Dr. Lachinet",
+      textDiscription: "29.00/ hours",
+      rating: "28.00/hr",
     ),
   ];
 
@@ -168,7 +208,12 @@ class _HomeState extends State<Home> {
                   children: [
                     Text("Popular Doctor", style: AppStyles.medium18black),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(
+                          context,
+                          RoutesManager.popularDoctor,
+                        );
+                      },
                       child: Text("See all >", style: AppStyles.light12grey),
                     ),
                   ],
@@ -278,7 +323,15 @@ class _HomeState extends State<Home> {
                   children: [
                     Text("Feature Doctor", style: AppStyles.medium18black),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                DoctorDetails(model: model3[index]),
+                          ),
+                        );
+                      },
                       child: Text("See all >", style: AppStyles.light12grey),
                     ),
                   ],

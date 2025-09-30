@@ -4,24 +4,30 @@ import 'package:doctor_hunt_app/core/utils/app_colors.dart';
 import 'package:doctor_hunt_app/core/utils/app_styles.dart';
 import 'package:doctor_hunt_app/core/widgets/custom_elevated_buttom.dart';
 import 'package:doctor_hunt_app/core/widgets/custom_text_buttom.dart';
+import 'package:doctor_hunt_app/screens/main_layout/auth/widgets/login_bottom_sheet.dart';
 import 'package:doctor_hunt_app/screens/main_layout/auth/widgets/login_text_filed.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
   @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage(AppAssets.splashBg),
-          fit: BoxFit.fill,
+    return Scaffold(
+      backgroundColor: Colors.transparent,
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(AppAssets.splashBg),
+            fit: BoxFit.fill,
+          ),
         ),
-      ),
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        body: SafeArea(
+        child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: SingleChildScrollView(
@@ -115,7 +121,7 @@ class LoginScreen extends StatelessWidget {
                   ),
                   CustomTextButtom(
                     text: "Forgot password",
-                    onPressed: () {},
+                    onPressed: _bottomSheetPassword,
                     color: AppColors.green,
                   ),
                   SizedBox(height: MediaQuery.sizeOf(context).height * 0.2),
@@ -135,6 +141,89 @@ class LoginScreen extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  void _bottomSheetPassword() {
+    showModalBottomSheet(
+      context: context,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(40),
+          topRight: Radius.circular(40),
+        ),
+      ),
+      builder: (context) {
+        return Padding(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.viewInsetsOf(context).bottom,
+          ),
+          child: LoginBottomSheet(
+            text: 'Forgot password',
+            textDescription:
+                'Enter your email for the verification proccesss,we will send 4 digits code to your email.',
+            onpressed: _buildDigit,
+            texthintField: 'Email',
+          ),
+        );
+      },
+    );
+  }
+
+  void _buildDigit() {
+    showModalBottomSheet(
+      context: context,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(40),
+          topRight: Radius.circular(40),
+        ),
+      ),
+      builder: (context) {
+        return Padding(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.viewInsetsOf(context).bottom,
+          ),
+          child: LoginBottomSheet(
+            text: 'Enter 4 Digits Code',
+            textDescription:
+                'Enter the 4 digits code that you received on your email.',
+            onpressed: _buildResertPassword,
+            texthintField: "0",
+            isDigit: true,
+          ),
+        );
+      },
+    );
+  }
+
+  void _buildResertPassword() {
+    showModalBottomSheet(
+      context: context,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(40),
+          topRight: Radius.circular(40),
+        ),
+      ),
+      builder: (context) {
+        return Padding(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.viewInsetsOf(context).bottom,
+          ),
+          child: LoginBottomSheet(
+            text: 'Reset Password',
+            textDescription:
+                'Set the new password for your account so you can login and access all the features.',
+            onpressed: () {
+              Navigator.pushReplacementNamed(context, RoutesManager.login);
+            },
+            textElevatedButton: "Update Password",
+            texthintField: "New Password",
+            isTextField: true,
+          ),
+        );
+      },
     );
   }
 }

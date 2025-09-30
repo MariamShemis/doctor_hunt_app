@@ -5,14 +5,14 @@ import 'package:doctor_hunt_app/screens/main_layout/home/Find_Doctor/models/find
 import 'package:doctor_hunt_app/screens/main_layout/home/Find_Doctor/widgets/booking_screen.dart';
 import 'package:flutter/material.dart';
 
-class FindDoctorsScreen extends StatefulWidget {
-  FindDoctorsScreen({super.key});
+class MyDoctorsProfile extends StatefulWidget {
+  const MyDoctorsProfile({super.key});
 
   @override
-  State<FindDoctorsScreen> createState() => _FindDoctorsScreenState();
+  State<MyDoctorsProfile> createState() => _MyDoctorsProfileState();
 }
 
-class _FindDoctorsScreenState extends State<FindDoctorsScreen> {
+class _MyDoctorsProfileState extends State<MyDoctorsProfile> {
   final TextEditingController _searchController = TextEditingController();
   List<FindDoctorModel> filteredDoctors = [];
   final List<FindDoctorModel> allDoctors = [
@@ -117,7 +117,7 @@ class _FindDoctorsScreenState extends State<FindDoctorsScreen> {
                         color: AppColors.grey,
                       ),
                     ),
-                    Text("Find Doctors", style: AppStyles.medium18black),
+                    Text("My Doctors", style: AppStyles.medium18black),
                   ],
                 ),
               ),
